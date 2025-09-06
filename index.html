@@ -7,7 +7,7 @@
   <meta name="description" content="Framed, emoji-rich command lists for the Mont Olympus Casino Discord bot.">
   <style>
     :root{
-      --bg-overlay: rgba(8,10,14,.58); /* change to .40 to lighten, .70 to darken */
+      --bg-overlay: rgba(8,10,14,.58); /* .40 = lighter, .70 = darker */
       --vignette: radial-gradient(1200px 600px at 50% 0%, rgba(0,0,0,.22), transparent 60%);
       --card:#121827; --text:#e8ecf3; --muted:#a9b2c7;
       --accent:#6b6ef9; --accent-2:#2fe6a8; --border:rgba(255,255,255,.08);
@@ -17,14 +17,14 @@
     body{
       margin:0; color:var(--text);
       font-family:system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,Arial,sans-serif; line-height:1.6;
-      background:#0b0f16; /* fallback color under video */
+      background:#0b0f16; /* fallback under video */
     }
-    /* Background video behind everything */
+    /* background video */
     .bgvideo{
       position: fixed; inset: 0; width: 100%; height: 100%;
       object-fit: cover; z-index: -2;
     }
-    /* Overlay for readability on top of video */
+    /* overlay for readability */
     body::before{
       content:""; position:fixed; inset:0; z-index:-1;
       background: var(--vignette), linear-gradient(to bottom, var(--bg-overlay), var(--bg-overlay));
@@ -64,6 +64,7 @@
       padding:10px 10px; border-radius:12px; margin:6px 0;
       background:rgba(255,255,255,.02); border:1px solid var(--border);
       box-shadow:0 6px 18px rgba(0,0,0,.15);
+      /* fade-in + gentle fade pulse */
       opacity:.2; transform: translateY(10px);
       animation: fadeSlideIn 900ms ease forwards, fadePulse 3.6s ease-in-out infinite;
       animation-delay: calc(var(--order, 0) * .12s), calc(var(--order, 0) * .15s);
@@ -83,10 +84,9 @@
   </style>
 </head>
 <body>
-  <!-- MOVING BACKGROUND -->
-  <video class="bgvideo" autoplay muted loop playsinline poster="bg.png">
-    <source src="bg.webm" type="video/webm">
-    <!-- Optional: add <source src="bg.mp4" type="video/mp4"> for iPhone/Safari -->
+  <!-- MP4 BACKGROUND -->
+  <video class="bgvideo" autoplay muted loop playsinline poster="bg.png" preload="auto">
+    <source src="bg.mp4" type="video/mp4">
   </video>
 
   <div class="wrap">
@@ -121,7 +121,7 @@
             <li style="--order:9"><span class="emoji">🕐</span><span class="slash">/hourly</span> <span class="desc">— Hourly claim</span></li>
             <li style="--order:10"><span class="emoji">🏆</span><span class="slash">/leaderboard</span> <span class="desc">— Chips, XP & vault breaks</span></li>
             <li style="--order:11"><span class="emoji">🗓️</span><span class="slash">/monthly</span> <span class="desc">— Monthly claim</span></li>
-            <!-- /mychips intentionally removed -->
+            <!-- /mychips removed -->
             <li style="--order:12"><span class="emoji">🚀</span><span class="slash">/nitro</span> <span class="desc">— Nitro boost daily</span></li>
             <li style="--order:13"><span class="emoji">⭐</span><span class="slash">/supporter</span> <span class="desc">— Supporter daily *</span></li>
             <li style="--order:14"><span class="emoji">🗳️</span><span class="slash">/vote</span> <span class="desc">— Vote reward</span></li>
@@ -162,7 +162,7 @@
     </section>
 
     <footer>
-      If the video doesn’t move on iPhone/Safari, also upload <code>bg.mp4</code> and add a second <code>&lt;source&gt;</code>.
+      MP4 is universal. If you ever add WebM too, put a <code>&lt;source src="bg.webm" type="video/webm"&gt;</code> above the MP4 line.
     </footer>
   </div>
 </body>
