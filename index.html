@@ -3,51 +3,168 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Mont Olympus Casino — top.gg Widgets</title>
+  <title>Mont Olympus Casino — Commands</title>
+  <meta name="description" content="Framed, emoji-rich command lists for the Mont Olympus Casino Discord bot.">
   <style>
-    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:#0b0d12; color:#e8eaf0; margin:0; }
-    .wrap { max-width: 960px; margin: 40px auto; padding: 0 20px; }
-    h1 { font-size: 36px; margin: 0 0 8px; }
-    p { opacity: .9; }
-    .hero { padding: 28px 0; border-bottom: 1px solid rgba(255,255,255,.08); margin-bottom: 24px; }
-    .badges { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
-    .badges a img { height: 40px; }
-    .badges a:first-child img { height: auto; max-width: 100%; }
-    .cta a { display:inline-block; margin-right:12px; padding:10px 14px; border-radius:10px; text-decoration:none; background:#6b6ef9; color:white; }
-    footer { margin-top:40px; opacity:.7; }
+    :root{
+      /* background: you already uploaded bg.png */
+      --bg-image: url('./bg.png');
+      --bg-overlay: rgba(8, 10, 14, .58);         /* make this lower (e.g. .40) to lighten */
+      --vignette: radial-gradient(1200px 600px at 50% 0%, rgba(0,0,0,.22), transparent 60%);
+
+      /* colors */
+      --card:#121827; --text:#e8ecf3; --muted:#a9b2c7;
+      --accent:#6b6ef9; --accent-2:#2fe6a8; --border:rgba(255,255,255,.08);
+      --ring: 0 0 0 2px rgba(107,110,249,.25), 0 0 0 6px rgba(107,110,249,.08);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; color:var(--text);
+      font-family:system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,Arial,sans-serif; line-height:1.6;
+      background-image: var(--bg-image);
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+    /* overlay for readability */
+    body::before{
+      content:""; position:fixed; inset:0; z-index:-1;
+      background:
+        var(--vignette),
+        linear-gradient(to bottom, var(--bg-overlay), var(--bg-overlay));
+    }
+
+    .wrap{max-width:1050px;margin:auto;padding:28px}
+    header{text-align:center}
+    h1{font-size:40px;margin:0 0 4px}
+    .sub{color:var(--muted);margin-bottom:10px}
+
+    .panel{
+      background: rgba(18,24,39,.85);
+      backdrop-filter: blur(3px);
+      border:1px solid var(--border); border-radius:16px;
+      padding:18px; margin:16px 0; box-shadow:0 8px 28px rgba(0,0,0,.25)
+    }
+
+    .cta{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+    .btn{display:inline-block;padding:12px 16px;border-radius:12px;text-decoration:none;color:#fff;background:var(--accent);font-weight:700;letter-spacing:.2px}
+    .btn.alt{background:var(--accent-2);color:#0c0f14}
+    .btn.ghost{background:#2b3144;border:1px solid var(--border)}
+    .btn:focus-visible{outline: none; box-shadow: var(--ring);}
+
+    h2{margin:0 0 14px;font-size:24px}
+    .grid{display:grid;gap:16px}
+    @media(min-width:860px){.grid{grid-template-columns:repeat(3,1fr)}}
+
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,0));
+      border:1px solid var(--border); border-radius:16px; padding:14px 14px 10px
+    }
+    .card h3{margin:4px 6px 10px; font-size:20px}
+
+    .commands{list-style:none; margin:0; padding:0}
+    .commands li{
+      display:flex; align-items:center; gap:10px;
+      padding:10px 10px; border-radius:12px; margin:6px 0;
+      background:rgba(255,255,255,.02); border:1px solid var(--border);
+      box-shadow:0 6px 18px rgba(0,0,0,.15);
+
+      /* animation: fade-in + subtle fade pulse */
+      opacity:.2; transform: translateY(10px);
+      animation: fadeSlideIn 900ms ease forwards, fadePulse 3.6s ease-in-out infinite;
+      animation-delay: calc(var(--order, 0) * .12s), calc(var(--order, 0) * .15s);
+    }
+    .commands li:hover{background:rgba(255,255,255,.06)}
+    .commands .emoji{font-size:22px; width:28px; text-align:center}
+    .commands .slash{
+      font-weight:800; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      background: #0b1022; border:1px solid var(--border); padding:4px 8px; border-radius:10px
+    }
+    .commands .desc{color:var(--muted)}
+    @keyframes fadeSlideIn{to{opacity:1; transform: translateY(0)}}
+    @keyframes fadePulse{0%,100%{opacity:.9} 50%{opacity:.6}}
+
+    .tip{margin-top:10px; color:var(--muted); font-size:14px}
+    footer{margin:22px 0;color:var(--muted);font-size:14px;text-align:center}
   </style>
 </head>
 <body>
   <div class="wrap">
-    <div class="hero">
+    <header>
       <h1>🎰 Mont Olympus Casino</h1>
-      <p>Official top.gg badges you can embed on your website.</p>
-    </div>
+      <div class="sub">Commands & Quick Links</div>
+    </header>
 
-    <p><strong>Large badge</strong></p>
-    <p>
-      <a href="https://top.gg/bot/977283629526958080">
-        <img src="https://top.gg/api/widget/977283629526958080.svg" alt="Mont Olympus — Large Widget">
-      </a>
-    </p>
+    <section class="panel" style="text-align:center">
+      <div class="cta">
+        <a class="btn" href="https://top.gg/bot/977283629526958080" target="_blank" rel="noopener">Add to Server</a>
+        <a class="btn alt" href="https://top.gg/bot/977283629526958080/vote" target="_blank" rel="noopener">Vote on top.gg</a>
+        <a class="btn ghost" href="https://discord.gg/zAftgvkfc8" target="_blank" rel="noopener">Join Server</a>
+      </div>
+    </section>
 
-    <p><strong>Small badges</strong></p>
-    <div class="badges">
-      <a href="https://top.gg/bot/977283629526958080"><img src="https://top.gg/api/widget/servers/977283629526958080.svg" alt="Servers"></a>
-      <a href="https://top.gg/bot/977283629526958080/vote"><img src="https://top.gg/api/widget/upvotes/977283629526958080.svg" alt="Upvotes"></a>
-      <a href="https://top.gg/bot/977283629526958080"><img src="https://top.gg/api/widget/status/977283629526958080.svg" alt="Status"></a>
-      <a href="https://top.gg/bot/977283629526958080"><img src="https://top.gg/api/widget/owner/977283629526958080.svg" alt="Owner"></a>
-      <a href="https://top.gg/bot/977283629526958080"><img src="https://top.gg/api/widget/lib/977283629526958080.svg" alt="Library"></a>
-    </div>
+    <section class="panel">
+      <h2>📚 Commands</h2>
+      <div class="grid">
 
-    <div class="cta" style="margin-top:28px">
-      <a href="https://top.gg/bot/977283629526958080">Add to Server</a>
-      <a href="https://top.gg/bot/977283629526958080/vote">Vote</a>
-      <a href="https://discord.gg/zAftgvkfc8">Support Server</a>
-    </div>
+        <!-- Economy -->
+        <div class="card">
+          <h3>💼 Economy</h3>
+          <ul class="commands">
+            <li style="--order:1"><span class="emoji">💳</span><span class="slash">/balance</span> <span class="desc">— Check chips</span></li>
+            <li style="--order:2"><span class="emoji">⚡</span><span class="slash">/bolt</span> <span class="desc">— Every 60s</span></li>
+            <li style="--order:3"><span class="emoji">🧺</span><span class="slash">/claimall</span> <span class="desc">— Claim all</span></li>
+            <li style="--order:4"><span class="emoji">⏱️</span><span class="slash">/cooldowns</span> <span class="desc">— Free chips & timers</span></li>
+            <li style="--order:5"><span class="emoji">📅</span><span class="slash">/daily</span> <span class="desc">— Daily claim</span></li>
+            <li style="--order:6"><span class="emoji">❤️</span><span class="slash">/donate</span> <span class="desc">— Support the casino</span></li>
+            <li style="--order:7"><span class="emoji">🏛️</span><span class="slash">/entrybonus</span> <span class="desc">— Entry bonus</span></li>
+            <li style="--order:8"><span class="emoji">💰</span><span class="slash">/goldenchips</span> <span class="desc">— Premium chips *</span></li>
+            <li style="--order:9"><span class="emoji">🕐</span><span class="slash">/hourly</span> <span class="desc">— Hourly claim</span></li>
+            <li style="--order:10"><span class="emoji">🏆</span><span class="slash">/leaderboard</span> <span class="desc">— Chips, XP & vault breaks</span></li>
+            <li style="--order:11"><span class="emoji">🗓️</span><span class="slash">/monthly</span> <span class="desc">— Monthly claim</span></li>
+            <!-- /mychips removed as requested -->
+            <li style="--order:12"><span class="emoji">🚀</span><span class="slash">/nitro</span> <span class="desc">— Nitro boost daily</span></li>
+            <li style="--order:13"><span class="emoji">⭐</span><span class="slash">/supporter</span> <span class="desc">— Supporter daily *</span></li>
+            <li style="--order:14"><span class="emoji">🗳️</span><span class="slash">/vote</span> <span class="desc">— Vote reward</span></li>
+            <li style="--order:15"><span class="emoji">📆</span><span class="slash">/weekly</span> <span class="desc">— Weekly claim</span></li>
+          </ul>
+          <div class="tip">* Perks may require supporter status.</div>
+        </div>
+
+        <!-- Games -->
+        <div class="card">
+          <h3>🎮 Games</h3>
+          <ul class="commands">
+            <li style="--order:1"><span class="emoji">🃏</span><span class="slash">/baccarat</span> <span class="desc">— Punto Banco</span></li>
+            <li style="--order:2"><span class="emoji">🂡</span><span class="slash">/blackjack</span> <span class="desc">— Classic 21</span></li>
+            <li style="--order:3"><span class="emoji">🪙</span><span class="slash">/coinflip</span> <span class="desc">— Heads or tails</span></li>
+            <li style="--order:4"><span class="emoji">✈️</span><span class="slash">/fly</span> <span class="desc">— Aviator</span></li>
+            <li style="--order:5"><span class="emoji">🔢</span><span class="slash">/keno</span> <span class="desc">— Lucky numbers</span></li>
+            <li style="--order:6"><span class="emoji">🎟️</span><span class="slash">/lottery</span> <span class="desc">— Olympus lotto</span></li>
+            <li style="--order:7"><span class="emoji">🟡</span><span class="slash">/plinko</span> <span class="desc">— GIF</span></li>
+            <li style="--order:8"><span class="emoji">🐎</span><span class="slash">/race</span> <span class="desc">— Horse race</span></li>
+            <li style="--order:9"><span class="emoji">🎯</span><span class="slash">/roulette</span> <span class="desc">— Casino roulette</span></li>
+            <li style="--order:10"><span class="emoji">✂️</span><span class="slash">/rps</span> <span class="desc">— Rock • Paper • Scissors</span></li>
+            <li style="--order:11"><span class="emoji">🪙</span><span class="slash">/scratch</span> <span class="desc">— Scratch cards</span></li>
+            <li style="--order:12"><span class="emoji">🍒</span><span class="slash">/slots</span> <span class="desc">— Spin the reels</span></li>
+          </ul>
+        </div>
+
+        <!-- User -->
+        <div class="card">
+          <h3>👤 User</h3>
+          <ul class="commands">
+            <li style="--order:1"><span class="emoji">🏦</span><span class="slash">/breakthebank</span> <span class="desc">— Prestige & multipliers</span></li>
+            <li style="--order:2"><span class="emoji">🪪</span><span class="slash">/profile</span> <span class="desc">— Your profile</span></li>
+            <li style="--order:3"><span class="emoji">🥇</span><span class="slash">/ranks</span> <span class="desc">— Ranks & claim payouts</span></li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
 
     <footer>
-      <p>Tip: on your top.gg listing, use Markdown (not these widgets). On external sites, paste this whole file.</p>
+      Tip: if the image looks too dark/light, adjust <code>--bg-overlay</code> at the top (e.g. .40 or .70).
     </footer>
   </div>
 </body>
