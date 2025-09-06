@@ -1,13 +1,13 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Mont Olympus Casino — Commands</title>
   <meta name="description" content="Framed, emoji-rich command lists for the Mont Olympus Casino Discord bot.">
   <style>
     :root{
-      --bg-overlay: rgba(8,10,14,.58);   /* tweak darker/lighter if needed */
+      --bg-overlay: rgba(8,10,14,.58); /* change to .40 to lighten, .70 to darken */
       --vignette: radial-gradient(1200px 600px at 50% 0%, rgba(0,0,0,.22), transparent 60%);
       --card:#121827; --text:#e8ecf3; --muted:#a9b2c7;
       --accent:#6b6ef9; --accent-2:#2fe6a8; --border:rgba(255,255,255,.08);
@@ -19,12 +19,12 @@
       font-family:system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,Arial,sans-serif; line-height:1.6;
       background:#0b0f16; /* fallback color under video */
     }
-    /* Video fills the viewport behind everything */
+    /* Background video behind everything */
     .bgvideo{
-      position:fixed; inset:0; width:100%; height:100%;
-      object-fit:cover; z-index:-2;
+      position: fixed; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; z-index: -2;
     }
-    /* Overlay for readability above video */
+    /* Overlay for readability on top of video */
     body::before{
       content:""; position:fixed; inset:0; z-index:-1;
       background: var(--vignette), linear-gradient(to bottom, var(--bg-overlay), var(--bg-overlay));
@@ -64,7 +64,6 @@
       padding:10px 10px; border-radius:12px; margin:6px 0;
       background:rgba(255,255,255,.02); border:1px solid var(--border);
       box-shadow:0 6px 18px rgba(0,0,0,.15);
-      /* fade-in + gentle fade pulse */
       opacity:.2; transform: translateY(10px);
       animation: fadeSlideIn 900ms ease forwards, fadePulse 3.6s ease-in-out infinite;
       animation-delay: calc(var(--order, 0) * .12s), calc(var(--order, 0) * .15s);
@@ -84,11 +83,10 @@
   </style>
 </head>
 <body>
-  <!-- Background video (muted+playsinline for mobile autoplay).
-       Poster shows while video loads or if unsupported. -->
+  <!-- MOVING BACKGROUND -->
   <video class="bgvideo" autoplay muted loop playsinline poster="bg.png">
     <source src="bg.webm" type="video/webm">
-    <source src="bg.mp4"  type="video/mp4">
+    <!-- Optional: add <source src="bg.mp4" type="video/mp4"> for iPhone/Safari -->
   </video>
 
   <div class="wrap">
@@ -164,7 +162,7 @@
     </section>
 
     <footer>
-      If the video doesn’t play on iOS/Safari, also upload <code>bg.mp4</code>. Adjust overlay via <code>--bg-overlay</code>.
+      If the video doesn’t move on iPhone/Safari, also upload <code>bg.mp4</code> and add a second <code>&lt;source&gt;</code>.
     </footer>
   </div>
 </body>
